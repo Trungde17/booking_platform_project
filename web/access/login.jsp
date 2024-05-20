@@ -1,15 +1,10 @@
-<%-- 
-    Document   : login
-    Created on : May 20, 2024, 4:32:49 PM
-    Author     : PC
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login here</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <link
@@ -30,7 +25,7 @@
             <!-- left side -->
             <div class="col-lg-6 position-relative">
                 <div
-                    class="row align-items-center justify-content-center 
+                    class="row align-items-center justify-content-center
                     h-100 g-0 px-4 px-sm-0">
                     <div class="col col-sm-6 col-lg-7 col-xl-6">
                         <!-- logo -->
@@ -80,13 +75,14 @@
                             <div class="input-group mb-3 d-flex- justify-content-between">
                                 <div class="form-check">
                                     <input type="checkbox" id="form-check" class="form-check-input"> <label
-                                        for="form-check" class="text-secondary form-check-label"><small>Remeber
+                                        for="form-check" class="text-secondary form-check-label"><small>Remember
                                             me</small></label>
                                 </div>
-                                <div><small><a href="#">Forgot password</a></small></div>
+                                <div><small><a href="forgotPassword.jsp">Forgot password</a></small></div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">LOGIN</button>
-                            <div class="text-center"><small>Don't have account? <a href="${pageContext.request.contextPath}/auth/register.jsp" class="fw-both" >Sign up</a></small> </div>
+                            <div class="text-center"><small>Don't have account? <a href="signup.jsp" class="fw-both" >Sign up</a></small> </div>
+                            
                         </form>
                         <!-- /FORM -->
                     </div>
