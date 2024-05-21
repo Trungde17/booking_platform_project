@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>WELCOME HEALING LAND</h1>
+        <div class="text-center"><small>Do you want come to your profile <a href="${pageContext.request.contextPath}/access/profile.jsp" class="fw-both" >Come to your profile</a></small> </div>
+
     </body>
 </html>
