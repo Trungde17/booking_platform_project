@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
             if (account != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", account);
-                url = "/access/profile.jsp";
+                url = "/index.jsp";
             } else {
                 request.setAttribute("incorrect_account", "Incorrect account or password!");
                 error=true;
