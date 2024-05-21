@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import DAO.AccountDAO;
@@ -21,59 +17,67 @@ import utilities.Valid;
  *
  * @author PC
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login_servlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "SigupServlet", urlPatterns = {"/sigupservlet"})
+public class SigupServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String temp = request.getParameter("email");
-        String temp2 = request.getParameter("password");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet SigupServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + temp + " " + temp2 + "</h1>");
+            out.println("<h1>Servlet SigupServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-   
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/access/login.jsp");
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "/access/login.jsp";
+        String first_name = request.getParameter("first_name");
+        String last_name = request.getParameter("last_name");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        boolean error = false;
-        if (Valid.isValidEmailAddress(email)) {
-            Account account = AccountDAO.verifyTheAccount(email, password);
-            if (account != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", account);
-                url = "/index.jsp";
-
-            } else {
-                request.setAttribute("incorrect_account", "Incorrect account or password!");
-                error=true;
-            }
-        } else {
-            request.setAttribute("email_error", "This is not an email!");
-            error=true;
+        String pass = request.getParameter("pass");
+        String pass_conf = request.getParameter("pass_conf");
+        String url = "/index.jsp";
+        boolean isError = false;
+        if (AccountDAO.checkEmail(email)) {
+            request.setAttribute("email_error", "This email has been registered!");
+            isError = true;
         }
-        if(error){
+
+        if (!pass.equals(pass_conf)) {
+            request.setAttribute("pass_conf_error", "Confirmation password does not match!");
+            isError = true;
+        }
+        if (!isError) {
+            Account account = AccountDAO.signupAccount(email, pass, first_name, last_name, 3);
+            if (account == null) {
+                isError = true;
+                request.setAttribute("signup_failed", "Registration failed!");
+            }
+            HttpSession session = request.getSession();
+            session.setAttribute("account", account);
+        }
+        if (isError) {
+            request.setAttribute("first_name", first_name);
+            request.setAttribute("last_name", last_name);
             request.setAttribute("email", email);
+            request.setAttribute("pass", pass);
+            request.setAttribute("pass_conf", pass_conf);
+            url = "/access/signup.jsp";
         }
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
         rd.forward(request, response);
@@ -82,6 +86,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

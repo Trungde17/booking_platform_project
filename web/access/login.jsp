@@ -16,7 +16,7 @@
         <link rel="stylesheet"
               href="${pageContext.request.contextPath}/css/login.css" />
         <link rel="stylesheet"
-              href="${pageContext.request.contextPath}/icon/themify-icons/themify-icons.css" />
+              href="${pageContext.request.contextPath}/css/main.css" />       
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
               rel='stylesheet'>
     </head>

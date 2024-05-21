@@ -1,22 +1,25 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <link href="css/styleloginn.css" rel="stylesheet" type="text/css"/>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <!-- Latest compiled JavaScript -->
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet"
+              href="${pageContext.request.contextPath}/css/main.css" />
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+              rel='stylesheet'>
         <title>Login Form</title>
         <style>
             body {
-                background: url('../img/danang.jpg') no-repeat center center fixed;
+                background: url('${pageContext.request.contextPath}/img/danang.jpg') no-repeat center center fixed;
                 background-size: cover;
                 font-family: 'Open Sans', sans-serif;
             }
@@ -35,7 +38,7 @@
             }
             .form-control {
                 display: flex;
-                justify-content: space-between;    
+                justify-content: space-between;
                 text-align: center;
                 margin-bottom: 20px;
             }
@@ -75,38 +78,51 @@
             .text-danger {
                 color: #dc3545;
             }
+            
         </style>
     </head>
     <body>
         <div class="container">
-            <h1>Sign Up</h1>
-            <form action="SignUpConTrol" method="post" class="form-signup">
+            <h1 class="mt-5 mb-5">Sign Up</h1>
+            <form action="${pageContext.request.contextPath}/sigupservlet" method="post" class="form-signup">
                 <div class="form-control">
+                    <c:set var="first_name" value="${requestScope.first_name}"/>
                     <div >
-                         <input name="FirstName" id="username" type="text" placeholder="FirstName">
+                        <input name="first_name" type="text" placeholder="First name" value="${first_name}" required>
                     </div>
+                    <c:set var="last_name" value="${requestScope.last_name}"/>
                     <div>
-                         <input name="LastName" id="username" type="text" placeholder="LastName">
+                        <input name="last_name" type="text" placeholder="Last name" value="${last_name}" required>
                     </div>
                     <small></small>
                 </div>
+                <c:set var="email" value="${requestScope.email}"/>
+                <c:set var="email_error" value="${requestScope.email_error}"/>
                 <div class="form-control">
-                    <input name="email" id="email" type="email" placeholder="Email">
+                    <input name="email" class="input_email" type="email" placeholder="Email" value="${email}" required>
+                </div>
+                <p class="error">${email_error}</p>
+                <c:set var="pass" value="${requestScope.pass}"/>
+                <div class="form-control">
+                    <input name="pass" type="password" placeholder="Password" value="${pass}" required>
                     <small></small>
                 </div>
+                <c:set var="pass_conf" value="${requestScope.pass_conf}"/>
+                <c:set var="pass_conf_error" value="${requestScope.pass_conf_error}"/>
                 <div class="form-control">
-                    <input name="pass" id="password" type="password" placeholder="Password">
-                    <small></small>
+                    <input name="pass_conf" type="password" placeholder="Confirm password" value="${pass_conf}" required>
+                    <small class="error"></small>
                 </div>
-                <div class="form-control">
-                    <input name="repass" id="confirm-password" type="password" placeholder="Confirm Password">
-                    <small></small>
-                </div>
-                <div class="form-control">
-                    <input name="phone" id="phone" type="tel" placeholder="Phone Number" pattern="[0]{1}[0-9]{9}">
-                    <small></small>
-                </div>
-                <p class="text-danger">${mess}</p>
+                <p class="error">${pass_conf_error}</p>
+                <div class="input-group mb-3 d-flex justify-content-between">
+                    <div class="form-check">
+                        <input type="checkbox" id="form-check" class="form-check-input" required> <label
+                            for="form-check" class="text-secondary form-check-label"><small class="accept">I accept the Terms and Conditions and Privacy Statement
+                                </small></label>
+                    </div>                    
+                </div>  
+                    <c:set var="signup_failed" value="${requestScope.signup_failed}"/>
+                    <p class="error">${signup_failed}</p>
                 <button class="btn-submit" type="submit">Sign up</button>
                 <div class="signup-link">
                     You have account?
@@ -114,60 +130,6 @@
                 </div>
             </form>
             <br>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script>
-            function toggleResetPswd(e) {
-                e.preventDefault();
-                $('#logreg-forms .form-signin').toggle(); // display:block or none
-                $('#logreg-forms .form-reset').toggle(); // display:block or none
-            }
-
-            function toggleSignUp(e) {
-                e.preventDefault();
-                $('#logreg-forms .form-signin').toggle(); // display:block or none
-                $('#logreg-forms .form-signup').toggle(); // display:block or none
-            }
-
-            $(() => {
-                // Login Register Form
-                $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
-                $('#logreg-forms #cancel_reset').click(toggleResetPswd);
-                $('#logreg-forms #btn-signup').click(toggleSignUp);
-                $('#logreg-forms #cancel_signup').click(toggleSignUp);
-            });
-
-            $(document).ready(function() {
-                $("#check-btn").click(function() {
-                    var email = $("#email-input").val();
-                    if (isValidEmail(email)) {
-                        var domain = email.split("@")[1];
-                        $.ajax({
-                            url: "https://api.trumail.io/v2/lookups/json?email=" + email,
-                            type: "GET",
-                            dataType: "json",
-                            success: function(data) {
-                                if (data.deliverable) {
-                                    alert(email + " is a valid email address.");
-                                } else {
-                                    alert(email + " is not a valid email address.");
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                alert("Error: " + textStatus + " - " + errorThrown);
-                            }
-                        });
-                    } else {
-                        alert("Please enter a valid email address.");
-                    }
-                });
-
-                function isValidEmail(email) {
-                    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                    return emailRegex.test(email);
-                }
-            });
-        </script>
+        </div>  
     </body>
 </html>
