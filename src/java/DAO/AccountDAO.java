@@ -3,6 +3,7 @@ package DAO;
 import java.sql.*;
 import java.util.ArrayList;
 import model.Account;
+import model.Customer;
 
 public class AccountDAO extends DAO {
 
@@ -101,6 +102,30 @@ public class AccountDAO extends DAO {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+    
+      public void updateProfile(Customer c) {
+        String sql = "UPDATE [dbo].[Customer]\n"
+                + "   SET [FirstName] = ?\n"
+                +"       ,[LastName]=?\n"
+                + "      ,[Email] = ?\n"
+                + "      ,[phone] = ?\n"
+                + "      ,[address] = ?\n"
+                + "      ,[gender] = ?\n"
+                + " WHERE CustomerID = ?";
+        try (Connection con = getConnection()){
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, c.getFirst_name());
+            ps.setString(2, c.getLast_name());
+            ps.setString(3, c.getEmail());
+            ps.setString(4, c.getPhone());
+            ps.setString(4, c.getAddress());
+            ps.setString(5, c.getGender());
+            ps.setInt(6, c.getAccount_id());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
     public static void main(String[] args) {
         System.out.println(count());
