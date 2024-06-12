@@ -1,52 +1,85 @@
-
 package DAO;
+
 import java.sql.*;
 import java.util.ArrayList;
-import model.Account;
-import model.Homestay;
-import model.HomestayAddress;
-import model.HomestayFacilities;
-import model.HomestayImg;
-import model.HomestayType;
-import model.Neighbourhood;
-import model.Payment;
-import model.Room;
+import model.*;
 
-public class HomestayDAO extends DAO{
-    public static Homestay getHomestayById(int homestay_id){
-        try (Connection con = getConnection()){
-            PreparedStatement stmt = con.prepareStatement("select * from tblHomestay where ht_id = ?");
-            stmt.setInt(1, homestay_id);
+public class HomestayDAO extends DAO {
+    
+    public static ArrayList<Homestay> getAllHomestays() {
+        ArrayList<Homestay> result = new ArrayList<>();
+        try (Connection con = getConnection()) {
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM tblHomestay");
+            ResultSet rs = stmt.executeQuery();
+            result = createHomestayBaseResultSet(rs);
         } catch (Exception e) {
             System.out.println(e);
         }
-        return null;
+        return result;
     }
     
-    public static ArrayList<Homestay>createHomestayBaseResultSet(ResultSet rs){
+
+    // Method to get all homestays based on a search query
+    public static ArrayList<Homestay> searchHomestays(String searchQuery) {
+        ArrayList<Homestay> homestays = new ArrayList<>();
+        try (Connection con = getConnection()) {
+            String sql = "SELECT * FROM tblHomestay WHERE ht_name LIKE ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, "%" + searchQuery + "%");
+            ResultSet rs = stmt.executeQuery();
+            homestays = createHomestayBaseResultSet(rs);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return homestays;
+    }
+    
+    public static ArrayList<Homestay> createHomestayBaseResultSet(ResultSet rs) {
+        ArrayList<Homestay> homestays = new ArrayList<>();
         try {
-            ArrayList<Homestay>result=new ArrayList<>();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("ht_id");
                 String name = rs.getString("ht_name");
-                Account owner=AccountDAO.getAccountById(rs.getInt("owner_id"));
+                Account owner = AccountDAO.getAccountById(rs.getInt("owner_id"));
                 HomestayType type = HomestayTypeDAO.getHomestayTypeById(rs.getInt("ht_type_id"));
-                String dsr = rs.getString("describe");
+                String description = rs.getString("describe");
                 HomestayAddress address = HomestayAddressDAO.getAddressById(rs.getInt("address_id"));
-                Payment payment=PaymentDAO.getPaymentById(rs.getInt("address_id"));
+                Payment payment = PaymentDAO.getPaymentById(rs.getInt("address_id"));
                 String rules = rs.getString("ht_rules");
-                ArrayList<HomestayImg>imgs=HomestayImgDAO.getHomestayImgs(id);
-                ArrayList<HomestayFacilities>facilities=HomestayFacilitiesDAO.getHomestayFacilities(id);
-                ArrayList<Neighbourhood>neighbourhoods=NeighbourhoodDAO.getNeighbourhoods(id);
-                ArrayList<Room>rooms=RoomDAO.getRoomsOfHomestay(id);
-                Date registration_date=rs.getDate("registration_date");
-                Account admin=AccountDAO.getAccountById(rs.getInt("admin_id"));
+                ArrayList<HomestayImg> imgs = HomestayImgDAO.getHomestayImgs(id);
+                ArrayList<HomestayFacilities> facilities = HomestayFacilitiesDAO.getHomestayFacilities(id);
+                ArrayList<Neighbourhood> neighbourhoods = NeighbourhoodDAO.getNeighbourhoods(id);
+                ArrayList<Room> rooms = RoomDAO.getRoomsOfHomestay(id);
+                Date registrationDate = rs.getDate("registration_date");
+                Account admin = AccountDAO.getAccountById(rs.getInt("admin_id"));
                 boolean status = rs.getBoolean("ht_status");
-                result.add(new Homestay(id, name, owner, type, dsr, address, payment, rules, imgs, facilities, neighbourhoods, registration_date, rooms, admin, status ));
+
+                Homestay homestay = new Homestay(id, name, owner, type, description, address, payment, rules, imgs, facilities, neighbourhoods, registrationDate, rooms, admin, status);
+                homestays.add(homestay);
             }
-        } catch (Exception e) {
-            System.out.println("");
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-        return null;
+        return homestays;
+    }
+    public static ArrayList<Homestay> searchHomestaysByName(String searchQuery) {
+        ArrayList<Homestay> result = new ArrayList<>();
+        try (Connection con = getConnection()) {
+            String sql = "SELECT * FROM tblHomestay WHERE ht_name LIKE ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, "%" + searchQuery + "%");
+            ResultSet rs = stmt.executeQuery();
+            result = createHomestayBaseResultSet(rs);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        ArrayList<Homestay> hs = HomestayDAO.getAllHomestays();
+        for (Homestay h : hs) {
+            System.out.println(h.toString());
+        }
     }
 }

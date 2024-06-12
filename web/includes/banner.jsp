@@ -2,7 +2,7 @@
 <section class="hero-section">
     <div class="hero-content">
         <h1>Find Your Home away from Home</h1>
-        <form class="row g-2 search mt-3">
+        <form action="searchController" class="row g-2 search mt-3">
             <div class="col-md-3" id="district">
                 <select class="form-select">
                     <option value="1" selected>Hải Châu</option>

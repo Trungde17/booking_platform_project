@@ -1,0 +1,58 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6;
+}
+
+#sidebar h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#sidebar p {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.profile-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.profile-section h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.profile-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #000;
+}

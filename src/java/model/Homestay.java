@@ -181,6 +181,11 @@ public class Homestay {
         final Homestay other = (Homestay) obj;
         return this.ht_id == other.ht_id;
     }
+
+    @Override
+    public String toString() {
+        return "Homestay{" + "ht_id=" + ht_id + ", ht_name=" + ht_name + ", owner=" + owner + ", homestayType=" + homestayType + ", describe=" + describe + ", homestayAddress=" + homestayAddress + ", payment=" + payment + ", homestay_rules=" + homestay_rules + ", img=" + img + ", facilities=" + facilities + ", neighbourhoods=" + neighbourhoods + ", registration_date=" + registration_date + ", admin=" + admin + ", status=" + status + ", rooms=" + rooms + '}';
+    }
     
     
 }

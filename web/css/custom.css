@@ -1,0 +1,475 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.mm {
+    background-color: #f5f5f5;
+}
+
+.mm-logo img {
+    max-width: 100px;
+}
+
+.mm-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.mm-menu {
+    display: none;
+}
+
+.mm-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mm-menu ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.mm-close span {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.inn-body-section {
+    padding: 20px 0;
+}
+
+.inn-detail-p1 h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.r2-ratt {
+    display: flex;
+    align-items: center;
+}
+
+.r2-ratt i {
+    color: #f5a623;
+    margin-right: 2px;
+}
+
+.r2-ratt img {
+    margin-left: 10px;
+}
+
+.r2-ratt span {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #777;
+}
+
+.inn-com {
+    margin-bottom: 30px;
+}
+
+.detail-title h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.detail-title p {
+    font-size: 14px;
+    color: #777;
+}
+
+.inn-com-list-point ul {
+    padding: 0;
+    list-style: none;
+}
+
+.inn-com-list-point ul li {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.inn-com-list-point ul li i {
+    color: #4caf50;
+    margin-right: 5px;
+}
+
+.inn-com-form .input-field {
+    margin-bottom: 20px;
+}
+
+.inn-com-form .input-field label {
+    font-size: 14px;
+    color: #777;
+}
+
+.inn-com-form .input-field input,
+.inn-com-form .input-field textarea {
+    font-size: 14px;
+}
+
+.inn-com-form .input-field textarea {
+    height: 100px;
+}
+
+.inn-com-form .full-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.inn-com-price {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.inn-com-price h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.inn-com-price p {
+    font-size: 14px;
+    color: #777;
+}
+
+.inn-com-price span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inn-com-price .inn-room-price {
+    font-size: 24px;
+    color: #ff6f61;
+}
+
+.room-photo-all {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.room-photo {
+    flex: 1 0 21%;
+    margin: 10px;
+}
+
+.room-photo-gal img {
+    width: 100%;
+    height: auto;
+}
+
+.re-room-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.re-room-list-1 img {
+    max-width: 100px;
+}
+
+.re-room-list-2 {
+    padding: 0 20px;
+    flex: 1;
+}
+
+.re-room-list-2 h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.re-room-list-2 p {
+    font-size: 14px;
+    color: #777;
+}
+
+.re-room-list-2 span {
+    display: block;
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.re-room-list-3 {
+    text-align: center;
+}
+
+.re-room-list-3 .hot-list-p3-1 {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.re-room-list-3 .hot-list-p3-2 {
+    display: block;
+    font-size: 18px;
+    color: #ff6f61;
+}
+
+.re-room-list-3 .spec-btn-text {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #ff6f61;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.room-rat-inn {
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.room-rat-img img {
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+.room-rat-img p {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
+.dir-rat-star {
+    margin-top: 10px;
+}
+
+.dir-rat-star i {
+    color: #f5a623;
+}
+
+.dir-rat-star i.fa-star-o {
+    color: #ccc;
+}
+
+.room-rat-body p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.room-rat-body ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: 10px;
+}
+
+.room-rat-body ul li {
+    margin-right: 10px;
+}
+
+.room-rat-body ul li a {
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.room-rat-body ul li a:hover {
+    color: #ff6f61;
+}
+
+.room-soc-share ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.room-soc-share ul li {
+    margin-right: 10px;
+}
+
+.room-soc-share ul li a {
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.room-soc-share ul li a:hover {
+    color: #ff6f61;
+}
+
+.hom-footer-section {
+    background-color: #f5f5f5;
+    padding: 20px 0;
+}
+
+.hom-footer-section .foot-com {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hom-footer-section .foot-com.foot-1 ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.hom-footer-section .foot-com.foot-1 ul li {
+    margin-right: 10px;
+}
+
+.hom-footer-section .foot-com.foot-1 ul li a {
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.hom-footer-section .foot-com.foot-2 h5 {
+    font-size: 14px;
+    color: #777;
+}
+
+.hom-footer-section .foot-com.foot-3 a {
+    color: #fff;
+    background-color: #ff6f61;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hom-footer-section .foot-com.foot-4 img {
+    max-width: 100px;
+}
+
+.site-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.sidebar-container {
+    padding: 20px 0;
+}
+
+.sidebar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.widget-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.widget {
+    flex: 1 0 21%;
+    margin: 10px;
+}
+
+.foot-logo img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.foot-logo p {
+    font-size: 14px;
+    color: #fff;
+}
+
+.widget h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.widget ul li {
+    margin-bottom: 5px;
+}
+
+.widget ul li a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.widget ul li a:hover {
+    color: #ff6f61;
+}
+
+.foot-sec2 {
+    padding: 20px 0;
+    background-color: #222;
+}
+
+.foot-sec2 h4 {
+    font-size: 16px;
+    color: #fff;
+}
+
+.foot-subsc {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.foot-subsc li {
+    margin-right: 10px;
+}
+
+.foot-subsc li input[type="text"] {
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    flex: 1;
+}
+
+.foot-subsc li input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.foot-social {
+    text-align: center;
+}
+
+.foot-social ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.foot-social ul li {
+    margin-right: 10px;
+}
+
+.foot-social ul li a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.foot-social ul li a:hover {
+    color: #ff6f61;
+}
+
+.copy {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
