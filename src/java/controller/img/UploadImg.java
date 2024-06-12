@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller.img;
 
 import DAO.AccountDAO;
@@ -29,7 +25,6 @@ public class UploadImg extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -57,12 +52,22 @@ public class UploadImg extends HttpServlet {
             Account account = (Account) session.getAttribute("account");
             String fileName = filePart.getSubmittedFileName();
             Map mapResult = CloudinaryConfig1.upLoadFile(filePart.getInputStream(), fileName);
-            if (mapResult != null) {
+            if (mapResult != null && mapResult.containsKey("url")) {
                 String img_url = (String) mapResult.get("url");
-                CloudinaryConfig1.deleteCloundinary(account.getAvatar_img());
+                if (account.getAvatar_img() != null) {
+                    CloudinaryConfig1.deleteCloundinary(account.getAvatar_img());
+                }
                 AccountDAO.changeAvatar(account.getAccount_id(), img_url); 
                 account.setAvatar_img(img_url);
+            } else {
+                // Xử lý khi upload file thất bại
+                request.setAttribute("uploadError", "Image upload failed, please try again.");
             }
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/account/personal_profile.jsp");
+            rd.forward(request, response);
+        } else {
+            // Xử lý khi không có file được chọn
+            request.setAttribute("uploadError", "No file selected, please choose a file to upload.");
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/account/personal_profile.jsp");
             rd.forward(request, response);
         }
@@ -72,5 +77,4 @@ public class UploadImg extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
